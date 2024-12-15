@@ -1,5 +1,5 @@
 import { Question } from '../question/question.entity';
-import { Participant } from '../participant/participant.entity';
+import { QuizSession } from '../quiz-session/quiz-session.entity';
 import {
   BaseEntity,
   Column,
@@ -25,8 +25,8 @@ export class Quiz extends BaseEntity {
   @OneToMany(() => Question, (question) => question.quiz)
   questions: Question[];
 
-  @OneToMany(() => Participant, (participant) => participant.quiz)
-  participants: Participant[];
+  @OneToMany(() => QuizSession, (quizSession) => quizSession.quiz)
+  quizSessions: QuizSession[];
 
   @Column({ default: false })
   isDeleted: boolean;

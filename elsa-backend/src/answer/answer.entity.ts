@@ -18,10 +18,11 @@ export class Answer extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Index()
-  @ManyToOne(() => Question, (question) => question.answers)
-  @JoinColumn({ name: 'questionId' })
-  question: Question;
+  @Column()
+  questionId: number;
+
+  @Column()
+  participantId: number;
 
   @Index()
   @ManyToOne(() => Participant, (participant) => participant.answers)

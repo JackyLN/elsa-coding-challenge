@@ -6,12 +6,15 @@ export async function seedQuestions(dataSource: DataSource) {
   const quizRepository = dataSource.manager.getRepository(Quiz);
   const questionRepository = dataSource.manager.getRepository(Question);
 
-  const quiz1 = await quizRepository.findOne({ where: { id: 1 } });
-  const quiz2 = await quizRepository.findOne({ where: { id: 2 } });
+  const quiz1 = await quizRepository.findOne({
+    where: { name: 'Learn about Vietnam.' },
+  });
+  const quiz2 = await quizRepository.findOne({
+    where: { name: 'Primary Math.' },
+  });
 
   const questionsQuiz1 = [
     {
-      id: 1,
       content: 'What is the capital of Vietnam?',
       order: 1,
       options: ['Hanoi', 'Da Nang', 'Ho Chi Minh'],
@@ -19,7 +22,6 @@ export async function seedQuestions(dataSource: DataSource) {
       quiz: quiz1,
     },
     {
-      id: 2,
       content: 'Pick 2 largest cities by population.',
       order: 2,
       options: [
@@ -34,7 +36,6 @@ export async function seedQuestions(dataSource: DataSource) {
       quiz: quiz1,
     },
     {
-      id: 3,
       content: "What is Vietnam's national flower?",
       options: ['Rose', 'Lotus', 'Daisy', 'Sunflower'],
       order: 3,
@@ -45,7 +46,6 @@ export async function seedQuestions(dataSource: DataSource) {
 
   const questionsQuiz2 = [
     {
-      id: 4,
       content: 'What is 5 + 3?',
       order: 1,
       options: ['5', '8', '10', '15'],

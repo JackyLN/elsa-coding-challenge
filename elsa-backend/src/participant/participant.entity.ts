@@ -1,3 +1,4 @@
+import { QuizSession } from '../quiz-session/quiz-session.entity';
 import { Answer } from '../answer/answer.entity';
 import { Quiz } from '../quiz/quiz.entity';
 import {
@@ -24,10 +25,13 @@ export class Participant extends BaseEntity {
   @Column({ nullable: true })
   email: string;
 
+  @Column()
+  quizSessionId: number;
+
   @Index()
-  @ManyToOne(() => Quiz, (quiz) => quiz.participants)
-  @JoinColumn({ name: 'quizId' })
-  quiz: Quiz;
+  @ManyToOne(() => QuizSession, (quizSession) => quizSession.participants)
+  @JoinColumn({ name: 'quizSessionId' })
+  quizSession: QuizSession;
 
   @OneToMany(() => Answer, (answer) => answer.participant)
   answers: Answer[];

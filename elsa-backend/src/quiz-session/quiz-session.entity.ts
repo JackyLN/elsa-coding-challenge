@@ -1,4 +1,4 @@
-import { Answer } from '../answer/answer.entity';
+  import { Participant } from '../participant/participant.entity';
 import { Quiz } from '../quiz/quiz.entity';
 import {
   BaseEntity,
@@ -13,34 +13,31 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-@Entity('Questions')
-export class Question extends BaseEntity {
+@Entity('QuizSessions')
+export class QuizSession extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  content: string;
-
-  @Column({ type: 'float' })
-  order: number;
-
-  @Column('simple-array')
-  options: string[];
-
-  @Column('simple-array')
-  correctOption: number[];
+  sessionName: string;
 
   @Column()
   quizId: number;
 
-  @Index()
-  @ManyToOne(() => Quiz, (quiz) => quiz.questions)
+  @ManyToOne(() => Quiz, (quiz) => quiz.quizSessions)
   @JoinColumn({ name: 'quizId' })
   quiz: Quiz;
+
+  @Column('jsonb')
+  quizState: any;
+
+  @OneToMany(() => Participant, (participant) => participant.quizSession)
+  participants: Participant[];
 
   @Column({ default: false })
   isDeleted: boolean;
 
+  @Index()
   @CreateDateColumn()
   createdAt: Date;
 
