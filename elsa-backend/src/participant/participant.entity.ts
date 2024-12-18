@@ -1,6 +1,5 @@
 import { QuizSession } from '../quiz-session/quiz-session.entity';
 import { Answer } from '../answer/answer.entity';
-import { Quiz } from '../quiz/quiz.entity';
 import {
   BaseEntity,
   Column,

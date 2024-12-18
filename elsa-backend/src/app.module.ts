@@ -8,6 +8,7 @@ import { QuestionModule } from './question/question.module';
 import typeorm from './_database/typeorm.config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { QuizSessionModule } from './quiz-session/quiz-session.module';
+import { LeaderboardModule } from './leaderboard/leaderboard.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { QuizSessionModule } from './quiz-session/quiz-session.module';
     AnswerModule,
     QuestionModule,
     QuizSessionModule,
+    LeaderboardModule,
   ],
   controllers: [AppController],
   providers: [],

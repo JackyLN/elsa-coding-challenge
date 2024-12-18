@@ -27,6 +27,6 @@ export class QuizController {
   @ApiParam({ name: 'id', description: 'Quiz Id' })
   getQuestionByQuizId(@Param('id') id: string): Promise<any> {
     const quizId = parseInt(id, 10) || 0;
-    return this.questionService.getQuestionByQuizId(quizId)
+    return this.questionService.getQuestionByQuizId(quizId);
   }
 }

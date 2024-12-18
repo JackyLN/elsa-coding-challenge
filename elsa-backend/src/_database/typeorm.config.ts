@@ -14,7 +14,9 @@ const config = {
   database: process.env.DATABASE_NAME || 'quiz_db',
   entities: [__dirname + '/../**/*.entity.{js,ts}'],
   migrations: [__dirname + '/migrations/*.{js,ts}'],
-  logging: process.env.DATABASE_LOG || false,
+  // logging: process.env.DATABASE_LOG || false,
+  logging: true,
+  
   synchronize: false,
   ssl:
     process.env.NODE_ENV !== 'development'
