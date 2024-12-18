@@ -4,25 +4,25 @@
 
 ``` mermaid
 graph TD
-    A[Participant App (Frontend)] -->|REST API (e.g., /participants)| B[Backend]
-    A -->|Socket.IO (Real-time communication)| C[Socket Gateway (Leaderboard)]
-    B -->|Database Queries| D[Database]
-    C -->|Emit Leaderboard Updates| A
+    A["Participant App (Frontend)"] -->|"REST API (e.g., /participants)"| B[Backend]
+    A -->|"Socket.IO (Real-time communication)"| C["Socket Gateway (Leaderboard)"]
+    B -->|"Database Queries"| D[Database]
+    C -->|"Emit Leaderboard Updates"| A
 
     subgraph Backend
-        B[REST API]
-        C[Socket Gateway (Leaderboard)]
+        B["Backend Service"]
+        C["Socket Gateway (Leaderboard)"]
     end
 
-    subgraph Database
-        D1[Participants Table]
-        D2[Answers Table]
+    subgraph D[Database]
+        D1["Participants Table"]
+        D2["Answers Table"]
     end
 
-    D -->|Participant Data| B
-    D -->|Leaderboard Data| B
-    B -->|Leaderboard Updates| C
-    C -->|Push to Connected Clients| A
+    D -->|"Participant Data"| B
+    D -->|"Leaderboard Data"| B
+    B -->|"Leaderboard Updates"| C
+    C -->|"Push to Connected Clients"| A
 ```
 
 ## Backend
