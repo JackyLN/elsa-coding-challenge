@@ -1,3 +1,5 @@
+import { OnEvent } from '@nestjs/event-emitter';
+import { LeaderboardService } from './leaderboard.service';
 import {
   WebSocketGateway,
   WebSocketServer,
@@ -16,6 +18,8 @@ import { Server, Socket } from 'socket.io';
 export class LeaderboardGateway
   implements OnGatewayConnection, OnGatewayDisconnect
 {
+  constructor(private readonly leaderboardService: LeaderboardService) {}
+
   @WebSocketServer() server: Server;
 
   private activeUsers = 0;
@@ -33,12 +37,21 @@ export class LeaderboardGateway
   }
 
   @SubscribeMessage('joinLeaderboard')
-  handleJoinLeaderboard(client: Socket, payload: { sessionId: string }) {
+  async handleJoinLeaderboard(client: Socket, payload: { sessionId: string }) {
     console.log(`Client joined leaderboard for session: ${payload.sessionId}`);
     client.join(payload.sessionId); // Join a room specific to the session
+
+    // Fetch and emit the current leaderboard to the user
+    const leaderboard = await this.leaderboardService.calculateLeaderboard(
+      Number(payload.sessionId),
+    );
+    client.emit('leaderboardUpdate', leaderboard);
   }
 
-  emitLeaderboardUpdate(sessionId: string, leaderboard: any) {
-    this.server.to(sessionId).emit('leaderboardUpdate', leaderboard); // Emit to room
+  @OnEvent('leaderboard.update')
+  handleLeaderboardUpdate(payload: { sessionId: string; leaderboard: any }) {
+    this.server
+      .to(payload.sessionId)
+      .emit('leaderboardUpdate', payload.leaderboard);
   }
 }

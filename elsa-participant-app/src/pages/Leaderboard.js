@@ -13,13 +13,17 @@ const Leaderboard = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    socket.emit("joinLeaderboard", sessionId);
+    // Join leaderboard room
+    socket.emit("joinLeaderboard", { sessionId });
 
-    socket.on("leaderboardUpdated", (data) => {
+    // Handle leaderboard updates
+    socket.on("leaderboardUpdate", (data) => {
       setLeaderboard(data);
     });
 
-    return () => socket.disconnect();
+    return () => {
+      socket.disconnect();
+    };
   }, [sessionId]);
 
   const handleExit = () => {
@@ -28,9 +32,9 @@ const Leaderboard = () => {
   };
 
   const columns = [
-    { title: "Rank", dataIndex: "rank", render: (_, __, index) => index + 1 },
-    { title: "Name", dataIndex: "name" },
-    { title: "Score", dataIndex: "score" },
+    { title: "Rank", dataIndex: "rank", key: "rank" },
+    { title: "Name", dataIndex: "name", key: "name" },
+    { title: "Score", dataIndex: "score", key: "score" },
   ];
 
   return (

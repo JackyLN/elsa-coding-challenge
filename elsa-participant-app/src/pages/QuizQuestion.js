@@ -12,8 +12,6 @@ const QuizQuestion = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const navigate = useNavigate();
 
-  const participantInfo = JSON.parse(localStorage.getItem("participantInfo"));
-
   useEffect(() => {
     fetchQuestionsBySession(sessionId)
       .then(setQuestions)

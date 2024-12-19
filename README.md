@@ -32,3 +32,27 @@ graph TD
 - Add log
 - Add unit test
 ## Frontend
+
+- Quiz Joining
+
+![Quiz Joining](docs/images/quiz-join.png)
+
+
+- Quiz Answer
+
+![Quiz Answer](docs/images/quiz-answer.png)
+
+- Leaderboard
+
+![Leader board image](docs/images/leaderboard.png)
+
+Leaderboard auto updated whenver an user answer single question and gain score:
+
+![Leader board update](docs/images/leaderboard-update.png
+)
+
+### Todo and further enhancement
+- We can add in another Frontend, let's call it `Elsa Host frontend`. The purpose is allow a host (probably teacher in this scenario) to update the quiz by themself. Once quiz is updated, or created a new quiz, they can create a session base on this and allow participant (student) to join the quiz.
+- With websocket, we can implement real time quiz, where host can start the quiz when they want, and participant can only join the quiz when it is started.
+- We can add timed out to each question, too.
+
