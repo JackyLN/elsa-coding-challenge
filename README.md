@@ -1,5 +1,11 @@
 # Elsa Coding Challenge
 
+## Features
+
+1. User Participation: Multiple user (participants) can signup and join the same quiz session simulataneously.
+2. Real-Time Score Updates: Score Update Real Time (using websocket)
+3. Real-Time Leaderboard: Leaderboard update real time whenever a participant submit an answer (using websocket)
+
 ## Demo
 
 https://demo.slidegate.xyz/
